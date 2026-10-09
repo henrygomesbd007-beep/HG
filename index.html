@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101015">
+  <meta name="description" content="Mobile-first AI image-to-video studio">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Motion Studio AI</title>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand-mark">✦</div>
+      <div class="brand-copy"><strong>Motion Studio</strong><span>IMAGE → VIDEO</span></div>
+      <span class="online-pill"><i></i> CLOUD</span>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">YOUR IMAGE, IN MOTION</div>
+        <h1>Bring a still<br><em>to life.</em></h1>
+        <p>Upload a frame. Describe the motion. Generate a short cinematic clip.</p>
+      </section>
+
+      <section class="panel upload-panel">
+        <div class="section-head"><div><span class="step">01</span><h2>Source image</h2></div><span class="muted">PNG · JPG · WEBP</span></div>
+        <label class="dropzone" id="dropzone" for="imageInput">
+          <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp">
+          <div id="uploadPlaceholder" class="upload-placeholder"><div class="upload-icon">↑</div><strong>Choose an image</strong><span>Tap to browse your device</span><small>Use images you own or have permission to animate.</small></div>
+          <img id="imagePreview" class="image-preview hidden" alt="Selected image preview">
+          <button type="button" id="removeImage" class="remove-image hidden" aria-label="Remove image">×</button>
+        </label>
+      </section>
+
+      <section class="panel">
+        <div class="section-head"><div><span class="step">02</span><h2>Motion prompt</h2></div><span id="promptCount" class="muted">0 / 1800</span></div>
+        <textarea id="prompt" maxlength="1800" placeholder="A slow camera push-in as the character turns toward the light, hair moving gently in the breeze, natural motion, cinematic lighting..."></textarea>
+        <div class="preset-row" aria-label="Prompt presets">
+          <button class="preset" data-prompt="The character slowly turns toward the camera, blinks naturally, and gives a subtle smile. Gentle camera push-in, realistic motion.">Face & expression</button>
+          <button class="preset" data-prompt="The character walks forward naturally while clothing and hair move softly in the breeze. Smooth tracking camera, cinematic lighting.">Walk cycle</button>
+          <button class="preset" data-prompt="The character dances with fluid, natural full-body movement. The camera slowly arcs around them, soft cinematic light.">Dance</button>
+          <button class="preset" data-prompt="A gentle breeze moves the hair and fabric as the character shifts their pose. Slow dolly-in, shallow depth of field.">Subtle motion</button>
+        </div>
+      </section>
+
+      <section class="panel settings-panel">
+        <div class="section-head"><div><span class="step">03</span><h2>Output settings</h2></div></div>
+        <div class="setting-row"><div><strong>Clip duration</strong><span>Shorter clips generally cost less</span></div><div class="segmented"><button data-duration="5" class="selected">5 sec</button><button data-duration="10">10 sec</button></div></div>
+        <div class="setting-row"><div><strong>Quality preset</strong><span>Balanced · provider default</span></div><span class="quality-tag">BALANCED</span></div>
+        <div class="notice"><span>ⓘ</span><p>Cloud generation requires an enabled provider API. Free usage is limited and may not cover a full video. No generation is charged until you press Generate.</p></div>
+      </section>
+
+      <section class="panel safety-panel">
+        <label class="checkline"><input id="adultConfirm" type="checkbox"><span>I confirm I am 18 or older and the image depicts fictional adults or people who have consented to this use.</span></label>
+        <p class="safety-copy">Provider content rules still apply. Explicit adult content may be rejected by the selected provider. Never upload sexual images of minors, non-consensual intimate imagery, or content that violates another person's rights.</p>
+      </section>
+
+      <section class="generate-wrap">
+        <button id="generateBtn" class="generate-btn"><span class="spark">✦</span><span id="generateLabel">Generate video</span><span class="arrow">↗</span></button>
+        <div class="tiny-note"><span class="lock">▣</span> API key stays on the server · image is sent to the AI provider</div>
+      </section>
+
+      <section id="statusPanel" class="panel status-panel hidden" aria-live="polite">
+        <div class="status-top"><div class="spinner" id="spinner"></div><div><strong id="statusTitle">Preparing your video</strong><p id="statusMessage">Submitting the request to the provider…</p></div></div>
+        <div id="resultWrap" class="result-wrap hidden"><video id="resultVideo" controls playsinline></video><a id="downloadLink" class="download-btn" download="motion-studio-video.mp4" target="_blank" rel="noopener">Open / save video ↗</a><p class="result-note">The provider hosts the result URL. Save the video to your device if you want a local copy.</p></div>
+      </section>
+
+      <footer><span>Motion Studio AI · Prototype 1.0</span><span>Not affiliated with any AI provider</span></footer>
+    </main>
+  </div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

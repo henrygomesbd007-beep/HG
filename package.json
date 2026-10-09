@@ -1,0 +1,10 @@
+{
+  "name": "ai-motion-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mobile-first image-to-video PWA with server-side fal.ai integration",
+  "type": "module",
+  "scripts": { "dev": "vercel dev" },
+  "dependencies": { "@fal-ai/client": "^1.6.2" },
+  "devDependencies": { "vercel": "^41.7.8" }
+}
